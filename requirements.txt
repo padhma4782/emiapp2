@@ -4,3 +4,4 @@ numpy
 scikit-learn
 xgboost
 mlflow==2.10.2
+pyarrow==14.0.2
