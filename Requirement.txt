@@ -3,4 +3,4 @@ pandas
 numpy
 scikit-learn
 xgboost
-mlflow
+mlflow==2.10.2
