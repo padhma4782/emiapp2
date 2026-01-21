@@ -4,9 +4,7 @@ import numpy as np
 import joblib
 import os
 
-# ----------------------------------------------------
-# Page Config
-# ----------------------------------------------------
+
 st.set_page_config(
     page_title="EMI Decision Engine",
     layout="centered"
@@ -15,9 +13,8 @@ st.set_page_config(
 st.title("EMI Eligibility & Maximum EMI Predictor")
 st.markdown("---")
 
-# ----------------------------------------------------
-# Load Models (cached)
-# ----------------------------------------------------
+# Load Models 
+
 ELIGIBILITY_MODEL_PATH = os.path.join("models", "eligibility.pkl")
 EMI_MODEL_PATH = os.path.join("models", "maxemi.pkl")
 
@@ -29,9 +26,9 @@ def load_models():
 
 eligibility_model, emi_model = load_models()
 
-# ----------------------------------------------------
+
 # Applicant Inputs
-# ----------------------------------------------------
+
 st.subheader("Applicant Details")
 
 monthly_salary = st.number_input("Monthly Salary (₹)", 10000, 500000, 80000)
@@ -45,9 +42,7 @@ expenses = st.number_input("Monthly Expenses (₹)", 0, 300_000, 25_000)
 house_type_rented = st.checkbox("House Type: Rented")
 emergency_fund = st.number_input("Emergency Fund (₹)", 0, 5_000_000, 150_000)
 
-# ----------------------------------------------------
-# Feature Engineering
-# ----------------------------------------------------
+
 input_df = pd.DataFrame([{
     "monthly_salary": monthly_salary,
     "years_of_employment": years_of_employment,
@@ -63,9 +58,9 @@ input_df = pd.DataFrame([{
 
 st.markdown("---")
 
-# ----------------------------------------------------
+
 # Prediction
-# ----------------------------------------------------
+
 if st.button("Evaluate EMI"):
 
     eligibility_pred = eligibility_model.predict(input_df)[0]
